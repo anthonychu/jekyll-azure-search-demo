@@ -1,8 +1,100 @@
+---
+redirect_from: "/"
+---
 <html>
-<head>
-    <title>Azure Search JavaScript Demo</title>
-</head>
-<body>
-    
-</body>
+
+    <head>
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet" />
+        <link href="bower_components/bootstrap-material-design/dist/css/material-wfont.min.css" rel="stylesheet" />
+        <link href="css/site.css" rel="stylesheet" />
+        <title>Azure Search JavaScript Demo</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/www/">Azure Search JavaScript Demo</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="#"><i class="mdi-file-folder-open"></i> Source on GitHub</a></li>
+                <li><a href="#about"><i class="mdi-action-launch"></i> Blog Post</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+
+        <!-- Your site -->
+        
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body search">
+                    <form class="search-form" method="get">
+                        <div class="input-group col-sm-6">
+                            <input type="search" name="q" class="form-control" data-bind="value: searchQuery" placeholder="Enter keywords here..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit"><i class="mdi-action-search"></i> Search</button>
+                            </span>
+                        </div>
+                    </form>
+                    
+                    <div class="search-results" data-bind="if: searchQuery">
+                        <hr />
+                        <h3>Search Results for &quot;<span data-bind="text: searchQuery"></span>&quot;</h3>
+                        <div data-bind="foreach: results">
+                            <div class="search-result">
+                                <a class="search-result-link" target="_blank" data-bind="attr: { href: link }, text: title"></a><br />
+                                <span class="search-result-date text-muted" data-bind="text: moment(pubdate).format('MMMM D, YYYY')"></span>
+                            </div>
+                        </div>
+                        <div data-bind="if: !results().length && !isSearching()">
+                            No results found
+                        </div>
+                        <div class="search-loading" data-bind="if: isSearching">
+                            Searching ...
+                        </div>
+                    </div>
+                    
+                    <div class="search-results" data-bind="if: !searchQuery">
+                        <hr />
+                        <p>This page is a demo of a JavaScript implementation of a search page using
+                        Azure Search.</p>
+                        <p>GitHub Repo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Your site ends -->
+
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+        <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+        
+        <script type="text/javascript" src="bower_components/moment/moment.min.js"></script>
+        <script type="text/javascript" src="bower_components/knockout/knockout-3.3.0.min.js"></script>
+        <script type="text/javascript" src="bower_components/query-string/query-string.js"></script>
+        <script type="text/javascript" src="bower_components/azure-search/azure-search.min.js"></script>
+        
+        <script type="text/javascript" src="scripts/search-results.js"></script>
+        
+        <script>
+            $(document).ready(function() {
+                $.material.init();
+            });
+        </script>
+
+    </body>
+
 </html>

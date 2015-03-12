@@ -1,0 +1,19 @@
+.search-result {
+    margin-top: 20px;
+}
+
+.search-result-link {
+    font-size: 20px;
+}
+
+div.search {
+    padding: 48px 36px;
+}
+
+.search-results h3 {
+    margin-bottom: 24px;
+}
+
+hr {
+    margin-top: 48px;
+}
