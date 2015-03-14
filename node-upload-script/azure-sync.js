@@ -9,15 +9,17 @@ var rssPath = argv['rss'];
 var searchUrl = argv['search-url'];
 var searchKey = argv['search-key'];
 
-var readStream = fs.createReadStream(rssPath);
-var feedparser = new FeedParser();
 var posts = [];
+var feedparser = new FeedParser();
 
 var searchClient = AzureSearch({
     url: searchUrl,
     key: searchKey,
     version: '2015-02-28-preview'
 });
+
+
+var readStream = fs.createReadStream(rssPath);
 
 
 readStream.on('open', function () {
@@ -28,9 +30,8 @@ readStream.on('error', function(err) {
     console.error("Couldn't open file." + err);
 });
 
-feedparser.on('error', function(err) {
-    console.error("Couldn't read rss file. " + err);
-});
+
+feedparser.on('readable', feedparserReadItem);
 
 feedparser.on('end', function(err) {
     console.log("Finished reading posts: " + posts.length);
@@ -38,7 +39,9 @@ feedparser.on('end', function(err) {
     rebuildSearchIndex(posts);
 });
 
-feedparser.on('readable', feedparserReadItem);
+feedparser.on('error', function(err) {
+    console.error("Couldn't read rss file. " + err);
+});
 
 
 
