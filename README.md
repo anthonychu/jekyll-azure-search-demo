@@ -2,9 +2,9 @@
 
 This is a demo of how to index a Jekyll blog for free with Azure Search and how to search it with client-side JavaScript.
 
-* `jekyll-rss-feed` - the Liquid template to generate an RSS feed of all posts on a Jekyll blog
-* `node-upload-script` - the script to import the blog RSS to Azure Search
-* `www` - the sample search page (searches [anthonychu.ca](http://anthonychu.ca))
+* `jekyll-rss-feed` - Liquid template to generate an RSS feed of all posts on a Jekyll blog
+* `node-upload-script` - script to import the blog RSS to Azure Search
+* `www` - sample search page (searches [anthonychu.ca](http://anthonychu.ca))
 
 Full article explaining the process is here:
 
