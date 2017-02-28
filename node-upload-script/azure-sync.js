@@ -51,7 +51,7 @@ function feedparserReadItem() {
     var item, slug;
     
     while (item = stream.read()) {
-        slug = item.link.substring(item.link.lastIndexOf('/') + 1);
+        slug = item.link.substring(item.link.lastIndexOf('/') + 1).replace(/[^A-Za-z0-9=_-]+/g, "");
         posts.push({
             id: slug, 
             title: item.title, 
